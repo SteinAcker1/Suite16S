@@ -36,5 +36,5 @@ fi
 mkdir blast
 python3 scripts/fastq_to_fasta.py $fastq blast/${file_stem}.fasta
 fasta=blast/${file_stem}.fasta
-blast_output=blast/output.blastn
-blastn -query $fasta -db $database > $blast_output
+blast_output=blast/blast_output.txt
+blastn -query $fasta -db $database | grep -A 2 'Sequences' | grep NR | cut -d " " -f 2-3 > $blast_output
