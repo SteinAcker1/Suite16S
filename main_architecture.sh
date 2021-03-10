@@ -28,4 +28,8 @@ if $trim_badness
 then
   mkdir 0_trimming
   trimmomatic SE $fastq 0_trimming/${file_stem}_trimmed.fastq $trimmomatic_input
+  fastq=0_trimming/${file_stem}_trimmed.fastq
 fi
+
+mkdir blast
+python3 scripts/fastq_to_fasta.py $fastq blast/${file_stem}.fasta
