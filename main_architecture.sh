@@ -3,13 +3,15 @@ trim_primer=false
 trim_badness=false
 single=false
 paired=false
+database=db/SILVA_138_SSUParc_tax_silva.fasta
 
-while getopts ":i:p:t:" opt; do
+while getopts ":i:p:t:d:" opt; do
   case ${opt} in
     i) single=true; fastq=$OPTARG ;;
 #    'input_pe') paired=true; r1=$(echo $OPTARG | cut -d " " -f 1); r2=$(echo $OPTARG | cut -d " " -f 2) ;;
     p) trim_primer=true; primers=$OPTARG ;;
     t) trim_badness=true; trimmomatic_input=$OPTARG ;;
+    d) database=$OPTARG ;;
     \?) echo "Unknown option: -$OPTARG" >&2; exit 1;;
   esac
 done
@@ -33,3 +35,6 @@ fi
 
 mkdir blast
 python3 scripts/fastq_to_fasta.py $fastq blast/${file_stem}.fasta
+fasta=blast/${file_stem}.fasta
+blast_output=blast/output.blastn
+blastn -query $fasta -db $database > $blast_output
