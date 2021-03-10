@@ -6,7 +6,7 @@ fastq = sys.argv[1]
 primers = sys.argv[2]
 outfile = sys.argv[3]
 
-primers = primers.sep(",")
+primers = primers.split(",")
 primers_regex = ""
 for p in primers:
     p = module.create_DNA_regex(p)
@@ -14,7 +14,8 @@ for p in primers:
 primers_regex = primers_regex[:-1]
 primers_regex = re.compile(primers_regex)
 
-with open(fastq, "r") as fq and open(outfile, "w") as o:
+flag = 0
+with open(fastq, "r") as fq, open(outfile, "w") as o:
     for line in fq:
         if primers_regex.match(line):
             firstlen = len(line)
