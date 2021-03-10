@@ -10,8 +10,9 @@ primers = primers.split(",")
 primers_regex = ""
 for p in primers:
     p = module.create_DNA_regex(p)
-    primers_regex += "^" + p + "|"
+    primers_regex += "^" + p + "|" + "^" + module.get_complement(p) + "|"
 primers_regex = primers_regex[:-1]
+print(primers_regex)
 primers_regex = re.compile(primers_regex)
 
 flag = 0

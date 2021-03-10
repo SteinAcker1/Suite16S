@@ -1,3 +1,9 @@
+def get_complement(seq):
+    #Produces the complementary sequence of DNA in the 5'-3' direction
+    table = seq.maketrans('ACTGactg','TGACtgac')
+    comp = seq.translate(table)
+    return comp
+
 def create_DNA_regex(seq):
     #Translates IUPAC nucleotide codes into computer-readable regular expressions
     seq = seq.upper()
