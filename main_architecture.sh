@@ -3,7 +3,7 @@ trim_primer=false
 trim_badness=false
 single=false
 paired=false
-database=db/SILVA_138_SSUParc_tax_silva.fasta
+database=db2/bacteria.16SrRNA.fna
 
 while getopts ":i:p:t:d:" opt; do
   case ${opt} in
@@ -38,3 +38,12 @@ python3 scripts/fastq_to_fasta.py $fastq blast/${file_stem}.fasta
 fasta=blast/${file_stem}.fasta
 blast_output=blast/blast_output.txt
 blastn -query $fasta -db $database | grep -A 2 'Sequences' | grep NR | cut -d " " -f 2-3 > $blast_output
+
+mkdir sampleTaxonData
+cat blast/blast_output | while read line
+do
+  genus=$(cut -d " " -f 1 line | tr -d '[:punct:]')
+  species=$(cut -d " " -f 2 line | tr -d '[:punct:]')
+  taxon=$(cat taxa/taxon.txt | grep 'Bacteria' | grep $genus | cut -d$'\t' -f 12-19 | tr -d '[:punct:]')
+  echo -e $taxon'\t'$species >> sampleTaxonData/foundTaxa.tsv
+done
