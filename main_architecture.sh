@@ -40,7 +40,7 @@ blast_output=blast/blast_output.txt
 blastn -query $fasta -db $database | grep -A 2 'Sequences' | grep NR | cut -d " " -f 2-3 > $blast_output
 
 mkdir sampleTaxonData
-touch sampleTaxonData/foundTaxa.tsv
+> sampleTaxonData/foundTaxa.tsv
 cat blast/blast_output.txt | while read line
 do
   genus=$(echo $line | cut -d " " -f 1 | tr -d '[:punct:]')
