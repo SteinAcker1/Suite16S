@@ -4,7 +4,7 @@ trim_badness=false
 paired=false
 database=db2/bacteria.16SrRNA.fna
 calculateDiversity=false
-
+getPlots=false
 
 #Set options
 while getopts ":i:p:t:d:sp" opt; do
