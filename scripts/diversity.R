@@ -62,31 +62,38 @@ phylumShan <- getShannon(data$phylum)
 phylumRich <- getRichness(data$phylum)
 
 #Organizing the statistics in question into a dataframe
-output <- data.frame(Measure = c("SpeciesShannon",
-                                 "GenusShannon",
-                                 "FamilyShannon",
-                                 "OrderShannon",
-                                 "ClassShannon",
-                                 "PhylumShannon",
-                                 "SpeciesRichness",
-                                 "GenusRichness",
-                                 "FamilyRichness",
-                                 "OrderRichness",
-                                 "ClassRichness",
-                                 "PhylumRichness"),
-                     Value = c(speciesShan,
-                               genusShan,
-                               familyShan,
-                               orderShan,
-                               classShan,
-                               phylumShan,
-                               speciesRich,
-                               genusRich,
-                               familyRich,
-                               orderRich,
-                               classRich,
-                               phylumRich))
+output <- data.frame(TaxonLevel = c("Species",
+                                 "Genus",
+                                 "Family",
+                                 "Order",
+                                 "Class",
+                                 "Phylum"),
+                    ShannonIndex = c(speciesShan,
+                                    genusShan,
+                                    familyShan,
+                                    orderShan,
+                                    classShan,
+                                    phylumShan)
+                    Richness = c(speciesRich,
+                                genusRich,
+                                familyRich,
+                                orderRich,
+                                classRich,
+                                phylumRich))
 
 #Exporting the dataframe to a tsv file
 write.table(output, file = "output/diversity.tsv", quote = FALSE, sep = "\t", row.names = FALSE)
 
+#Creating taxon-level frequency tables
+phylum.df <- getNiceTable(data$phylum)
+colnames(phylum.df) <- c("Phylum", "Count")
+
+genus.df <- getNiceTable(data$genus)
+colnames(genus.df) <- c("Genus", "Count")
+
+species.df <- getNiceTable(species)
+colnames(species.df) <- c("Species", "Count")
+
+write.table(phylum.df, file = "output/phylum.tsv", quote = FALSE, sep = "\t", row.names = FALSE)
+write.table(genus.df, file = "output/genus.tsv", quote = FALSE, sep = "\t", row.names = FALSE)
+write.table(species.df, file = "output/species.tsv", quote = FALSE, sep = "\t", row.names = FALSE)

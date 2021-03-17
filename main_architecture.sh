@@ -1,18 +1,20 @@
 #!/bin/sh
 trim_primer=false
 trim_badness=false
-single=false
 paired=false
 database=db2/bacteria.16SrRNA.fna
+calculateDiversity=false
+
 
 #Set options
-while getopts ":i:p:t:d:" opt; do
+while getopts ":i:p:t:d:sp" opt; do
   case ${opt} in
-    i) single=true; fastq=$OPTARG ;;
-#    'input_pe') paired=true; r1=$(echo $OPTARG | cut -d " " -f 1); r2=$(echo $OPTARG | cut -d " " -f 2) ;;
+    i) fastq=$OPTARG ;;
     p) trim_primer=true; primers=$OPTARG ;;
     t) trim_badness=true; trimmomatic_input=$OPTARG ;;
     d) database=$OPTARG ;;
+    s) calculateDiversity=true ;;
+    p) getPlot=true ;;
     \?) echo "Unknown option: -$OPTARG" >&2; exit 1;;
   esac
 done
@@ -60,6 +62,13 @@ do
   echo $taxon'|'$genus'|'$species >> sampleTaxonData/foundTaxa.csv
 done
 
-#Use R to generate diversity statistics if indicated
+#Use R to generate diversity statistics and/or plot if indicated
 mkdir output
-Rscript scripts/diversity.R
+
+if [[ $calculateDiversity ]]; then
+  Rscript scripts/diversity.R
+fi
+
+if [[ $getPlot ]]; then
+  Rscript scripts/plotting.R
+fi
