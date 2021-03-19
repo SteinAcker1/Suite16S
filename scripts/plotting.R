@@ -28,7 +28,7 @@ getTopTaxa <- function(df) {
 }
 
 #Load the dataset
-data <- read.csv("Downloads/foundTaxa.csv", sep = "|")
+data <- read.csv("sampleTaxonData/foundTaxa.csv", sep = "|")
 
 #Prepare the dataset for plotting
 plotting.df <- data.frame(Phylum = data$phylum, Genus = data$genus)

@@ -2,6 +2,7 @@ library("dplyr")
 
 #Load the dataset
 data <- read.csv("sampleTaxonData/foundTaxa.csv", sep = "|")
+head(data)
 
 #Get a list of unique species
 species <- c()
@@ -73,7 +74,7 @@ output <- data.frame(TaxonLevel = c("Species",
                                     familyShan,
                                     orderShan,
                                     classShan,
-                                    phylumShan)
+                                    phylumShan),
                     Richness = c(speciesRich,
                                 genusRich,
                                 familyRich,
