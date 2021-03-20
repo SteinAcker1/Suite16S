@@ -3,14 +3,12 @@ trim_primer=false
 trim_badness=false
 paired=false
 database=~/bin/Suite16S/db/bacteria.16SrRNA.fna
-calculateDiversity=false
-getPlots=false
 file_stem="myproject"
 cores=2
 help=false
 
 #Set options
-while getopts ":i:p:t:d:n:c:sph" opt; do
+while getopts ":i:p:t:d:n:c:h" opt; do
   case ${opt} in
     i) fastq=$OPTARG ;;
     p) trim_primer=true; primers=$OPTARG ;;
@@ -18,15 +16,14 @@ while getopts ":i:p:t:d:n:c:sph" opt; do
     d) database=$OPTARG ;;
     n) file_stem=$OPTARG ;;
     c) cores=$OPTARG ;;
-    s) calculateDiversity=true ;;
-    p) getPlots=true ;;
     h) help=true ;;
     \?) echo "Unknown option: -$OPTARG" >&2; exit 1;;
   esac
 done
 shift $((OPTIND -1))
 
-if [[ $help ]]; then
+if $help
+then
   echo "
 -i 	(required) (input) Provides one or two FASTQ read file(s) (one if single end, two if paired end)
 -p	(input) Allows user to trim specific inputted primer sequences
@@ -34,8 +31,6 @@ if [[ $help ]]; then
 -d	(input) Allows user to specify a BLAST database to use other than the default RefSeq 16s database
 -c  (input) Allows user to specify how many cores to use in analysis (default = 2)
 -n  (input) Allows user to specify a file stem in the project (default: myproject)
--p	(boolean) Tells program to produce an R plot as output
--s	(boolean) Tells program to produce diversity statistics and frequency tables as output; can be used with or without -p
 -h  (boolean) Prints this help screen and exits"
   exit
 fi
@@ -111,10 +106,12 @@ done
 #Use R to generate diversity statistics and/or plot if indicated
 mkdir output
 
-if [[ $calculateDiversity ]]; then
-  Rscript ~/bin/Suite16S/scripts/diversity.R
-fi
+Rscript ~/bin/Suite16S/scripts/diversity.R
 
-if [[ $getPlots ]]; then
-  Rscript ~/bin/Suite16S/scripts/plotting.R
-fi
+Rscript ~/bin/Suite16S/scripts/plotting.R
+
+#Give the output files a good, descriptive name
+for file in $(ls output)
+do
+  mv output/$file output/${file_stem}_$file
+done
