@@ -21,7 +21,7 @@ USAGE:
 -d	(input) Allows user to specify a BLAST database to use other than the default RefSeq 16s database
 -c  (input) Allows user to specify how many cores to use in analysis (default = 2)
 -n  (input) Allows user to specify a file stem in the project (default: myproject)
--h  (boolean) Prints this help screen and exits"
+-h  (boolean) Prints this help screen and exits
 
 EXAMPLE: suite16s.sh -i sample_forward.fastq,sample_reverse.fastq -c 16 -t "LEADING:20 TRAILING:20 SLIDINGWINDOW:8:15 MINLEN:140 AVGQUAL:20" -n An_Excellent_Name -p ACGGACACA,ACATTTTACG
 
