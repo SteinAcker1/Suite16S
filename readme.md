@@ -37,6 +37,15 @@ export PATH="$PATH:/$HOME/bin/Suite16S/"
 6) Test the program by navigating to a different directory and entering "suite16s.sh -h" in the command line.
    If the help page shows up, congratulations! The program is ready to use. Enjoy!
 
+PROCEDURE:
+0) (Optional and situation-based) Use trim_primers.py, PANDAseq, and/or Trimmomatic if indicated
+1) Convert the FASTQ file into a FASTA file using the fastq_to_fasta.py script
+2) Run BLASTn on the resulting FASTA file
+3) Scrape the top hit from each BLAST query and add it to blast_output.txt
+4) Append full taxonomical data to the BLAST output and save to foundTaxa.csv
+5) Use diversity.R to generate diversity statistics for each taxonomic level, excluding taxa with fewer than 5 representatives to mitigate the risk of false hits
+6) Use diversity.R to generate bar plots for the top ten genera and top five phyla, also excluding taxa with fewer than 5 representatives
+
 FILE TREE REQUIRED FOR USE:
 ~/bin/Suite16S
       ├── db
@@ -54,7 +63,7 @@ FILE TREE REQUIRED FOR USE:
       ├── scripts
       │   ├── diversity.R
       │   ├── fastq_to_fasta.py
-      │   ├── getBacteriaSQL.sh (not required for use, but shows how taxa/bacteriaTaxa.sqlite3 was developed)
+      │   ├── getBacteriaSQL.sh (not required for use, but shows how taxa/bacteriaTaxa.sqlite3 was developed from the taxon.txt file downloaded from the link below)
       │   ├── module.py
       │   ├── plotting.R
       │   └── trim_primers.py
