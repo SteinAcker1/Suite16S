@@ -2,7 +2,7 @@
 trim_primer=false
 trim_badness=false
 paired=false
-database=~/bin/Suite16S/db2/bacteria.16SrRNA.fna
+database=~/bin/Suite16S/db/bacteria.16SrRNA.fna
 calculateDiversity=false
 getPlots=false
 file_stem="myproject"
