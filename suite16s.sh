@@ -47,12 +47,12 @@ if $trim_primer
 then
 if $paired
   then
-    python3 ~/bin/Suite16S/scripts/trim_primers.py $read1 $primers data/${file_stem}_noprimers.fastq
+    python3 ~/bin/Suite16S/scripts/trim_primers.py $read1 $primers ${read1%.fastq}_noprimers.fastq
     read1=${read1%.fastq}_noprimers.fastq
-    python3 ~/bin/Suite16S/scripts/trim_primers.py $read2 $primers data/${file_stem}_noprimers.fastq
-    read1=${read2%.fastq}_noprimers.fastq
+    python3 ~/bin/Suite16S/scripts/trim_primers.py $read2 $primers ${read2%.fastq}_noprimers.fastq
+    read2=${read2%.fastq}_noprimers.fastq
   else
-    python3 ~/bin/Suite16S/scripts/trim_primers.py $fastq $primers data/${file_stem}_noprimers.fastq
+    python3 ~/bin/Suite16S/scripts/trim_primers.py $fastq $primers ${fastq%.fastq}_noprimers.fastq
     fastq=${fastq%.fastq}_noprimers.fastq
   fi
 fi
