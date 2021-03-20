@@ -13,14 +13,21 @@ getNiceTable <- function(x) {
 }
 
 getTopTaxa <- function(df) {
-  temp_df <- getNiceTable(df$Genus)
-  temp_df <- temp_df[order(temp_df$count, decreasing = TRUE),]
-  topTaxa <- as.character(temp_df$taxon[1:10])
+  genera_df <- getNiceTable(df$Genus)
+  phyla_df <- getNiceTable(df$Phylum)
+  genera_df <- genera_df[order(genera_df$count, decreasing = TRUE),]
+  phyla_df <- phyla_df[order(phyla_df$count, decreasing = TRUE),]
+  topGenera <- as.character(genera_df$taxon[1:10])
+  topPhyla <- as.character(ifelse(nrow(phyla_df) >= 5, phyla_df$taxon[1:5], phyla_df$taxon))
   for (i in 1:nrow(df)) {
-    if (df[i,]$Genus %in% topTaxa) {
+    if (df[i,]$Genus %in% topGenera) {
       next
     } else {
       df[i,]$Genus <- "Other"
+    }
+    if (df[i,]$Phylum %in% topPhyla) {
+      next
+    } else {
       df[i,]$Phylum <- "Other"
     }
   }

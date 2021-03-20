@@ -2,7 +2,6 @@ library("dplyr")
 
 #Load the dataset
 data <- read.csv("sampleTaxonData/foundTaxa.csv", sep = "|")
-head(data)
 
 #Get a list of unique species
 species <- c()
