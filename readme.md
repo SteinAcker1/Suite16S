@@ -106,3 +106,5 @@ Primers used by Diabimmune research group: 515F [GTGCCAGCMGCCGCGGTAA] and 806R [
 NCBI RefSeq downloaded from ftp://ftp.ncbi.nlm.nih.gov/refseq/TargetedLoci/Bacteria//bacteria.16SrRNA.fna.gz
 
 Taxa list downloaded from https://www.irmng.org/export/2020/IRMNG_genera_DwCA_2020-03-24.zip
+
+Link to some (large) extra input/output examples involving termites: https://drive.google.com/drive/folders/1j3WiHsl6f0LuPRxgRvcMifwilmtbPMCG?usp=sharing
