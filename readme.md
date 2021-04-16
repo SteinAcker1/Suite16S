@@ -42,6 +42,7 @@ export PATH="$PATH:/$HOME/bin/Suite16S/"
 # Workflow
 
 PROCEDURE:
+
 0) (Optional and situation-based) Use trim_primers.py, PANDAseq, and/or Trimmomatic if indicated
 1) Convert the FASTQ file into a FASTA file using the fastq_to_fasta.py script
 2) Run BLASTn on the resulting FASTA file
