@@ -1,3 +1,5 @@
+# Essential Info
+
 TITLE: Suite16S
 
 AUTHOR: Stein Acker (GitHub: SteinAcker1; email: st1851ac-s@student.lu.se)
@@ -37,6 +39,8 @@ export PATH="$PATH:/$HOME/bin/Suite16S/"
 6) Test the program by navigating to a different directory and entering "suite16s.sh -h" in the command line.
    If the help page shows up, congratulations! The program is ready to use. Enjoy!
 
+# Workflow
+
 PROCEDURE:
 0) (Optional and situation-based) Use trim_primers.py, PANDAseq, and/or Trimmomatic if indicated
 1) Convert the FASTQ file into a FASTA file using the fastq_to_fasta.py script
@@ -47,62 +51,61 @@ PROCEDURE:
 6) Use diversity.R to generate bar plots for the top ten genera and top five phyla, also excluding taxa with fewer than 5 representatives
 
 FILE TREE REQUIRED FOR USE:
-~/bin/Suite16S
 
-      ├── db
-      
-      │   ├── bacteria.16SrRNA.fna
-      
-      │   ├── bacteria.16SrRNA.fna.ndb
-      
-      │   ├── bacteria.16SrRNA.fna.nhr
-      │   ├── bacteria.16SrRNA.fna.nin
-      │   ├── bacteria.16SrRNA.fna.nog
-      │   ├── bacteria.16SrRNA.fna.nos
-      │   ├── bacteria.16SrRNA.fna.not
-      │   ├── bacteria.16SrRNA.fna.nsq
-      │   ├── bacteria.16SrRNA.fna.ntf
-      │   └── bacteria.16SrRNA.fna.nto
-      ├── readme.md
-      ├── scripts
-      │   ├── diversity.R
-      │   ├── fastq_to_fasta.py
-      │   ├── getBacteriaSQL.sh (not required for use, but shows how taxa/bacteriaTaxa.sqlite3 was developed from the taxon.txt file downloaded from the link below)
-      │   ├── module.py
-      │   ├── plotting.R
-      │   └── trim_primers.py
-      ├── suite16s.sh
-      └── taxa
-          └── bacteriaTaxa.sqlite3
+~/bin/Suite16S<br>
+      ├── db<br>
+      │   ├── bacteria.16SrRNA.fna<br>
+      │   ├── bacteria.16SrRNA.fna.ndb<br>
+      │   ├── bacteria.16SrRNA.fna.nhr<br>
+      │   ├── bacteria.16SrRNA.fna.nin<br>
+      │   ├── bacteria.16SrRNA.fna.nog<br>
+      │   ├── bacteria.16SrRNA.fna.nos<br>
+      │   ├── bacteria.16SrRNA.fna.not<br>
+      │   ├── bacteria.16SrRNA.fna.nsq<br>
+      │   ├── bacteria.16SrRNA.fna.ntf<br>
+      │   └── bacteria.16SrRNA.fna.nto<br>
+      ├── readme.md<br>
+      ├── scripts<br>
+      │   ├── diversity.R<br>
+      │   ├── fastq_to_fasta.py<br>
+      │   ├── getBacteriaSQL.sh (not required for use, but shows how taxa/bacteriaTaxa.sqlite3 was developed from the taxon.txt file downloaded from the link below)<br>
+      │   ├── module.py<br>
+      │   ├── plotting.R<br>
+      │   └── trim_primers.py<br>
+      ├── suite16s.sh<br>
+      └── taxa<br>
+          └── bacteriaTaxa.sqlite3
 
 OUTPUT FILE TREE (paired end, trimming functionality enabled, no primers):
-.
-├── 0_trimming
-│   ├── myproject_1P.fastq
-│   ├── myproject_1U.fastq
-│   ├── myproject_2P.fastq
-│   └── myproject_2U.fastq
-├── sample_forward.fastq
-├── sample_reverse.fastq
-├── blast
-│   ├── blast_output.txt
-│   └── myproject.fasta
-├── 1_merged
-│   ├── myproject.fastq
-│   ├── myproject.log
-│   └── myproject_unaligned.fasta
-└── output
-    ├── myproject_diversity.tsv
-    ├── myproject_genus_plot.svg
-    ├── myproject_genus.tsv
-    ├── myproject_phylum_plot.svg
-    ├── myproject_phylum.tsv
-    └── myproject_species.tsv
+.<br>
+├── 0_trimming<br>
+│   ├── myproject_1P.fastq<br>
+│   ├── myproject_1U.fastq<br>
+│   ├── myproject_2P.fastq<br>
+│   └── myproject_2U.fastq<br>
+├── sample_forward.fastq<br>
+├── sample_reverse.fastq<br>
+├── blast<br>
+│   ├── blast_output.txt<br>
+│   └── myproject.fasta<br>
+├── 1_merged<br>
+│   ├── myproject.fastq<br>
+│   ├── myproject.log<br>
+│   └── myproject_unaligned.fasta<br>
+└── output<br>
+    ├── myproject_diversity.tsv<br>
+    ├── myproject_genus_plot.svg<br>
+    ├── myproject_genus.tsv<br>
+    ├── myproject_phylum_plot.svg<br>
+    ├── myproject_phylum.tsv<br>
+    └── myproject_species.tsv<br>
 
  (Note: if only one FASTQ file is inputted, there will be no 1_merged/ directory. If
    the -t flag is not used, there will be no 0_trimming/ directory. If primers need to
    be removed, new files with the format (sample name)_noprimers.fastq will appear in
    the main directory.)
+   
+# Test Data
 
 Test files "G35348_R1_001.fastq" and "G35348_R2_001.fastq" found at https://diabimmune.broadinstitute.org/diabimmune/t1d-cohort/resources/16s-sequence-data
 Primers used by Diabimmune research group: 515F [GTGCCAGCMGCCGCGGTAA] and 806R [GGACTACHVGGGTWTCTAA] (source: https://www.cell.com/cell-host-microbe/pdfExtended/S1931-3128(15)00021-9)
