@@ -48,9 +48,13 @@ PROCEDURE:
 
 FILE TREE REQUIRED FOR USE:
 ~/bin/Suite16S
+
       ├── db
+      
       │   ├── bacteria.16SrRNA.fna
+      
       │   ├── bacteria.16SrRNA.fna.ndb
+      
       │   ├── bacteria.16SrRNA.fna.nhr
       │   ├── bacteria.16SrRNA.fna.nin
       │   ├── bacteria.16SrRNA.fna.nog
